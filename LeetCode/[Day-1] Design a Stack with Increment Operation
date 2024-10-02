@@ -1,0 +1,44 @@
+class CustomStack {
+    Stack<Integer> stk;
+    int maxSize;
+    public CustomStack(int maxSize) {
+        stk = new Stack<>();
+        this.maxSize = maxSize;
+    }
+    
+    public void push(int x) {
+        if(stk.size()< maxSize){
+            stk.push(x);
+        }
+    }
+    
+    public int pop() {
+        if(stk.isEmpty()){
+            return -1;
+        }else{
+            return stk.pop();
+        }
+    }
+    
+    public void increment(int k, int val) {
+        Stack<Integer> stk2 = new Stack<>();
+        while(!stk.isEmpty()){
+            stk2.push(stk.pop());
+        }
+        while(!stk2.isEmpty() && k>0){
+            stk.push(stk2.pop()+val);
+            k--;
+        }
+        while(!stk2.isEmpty()){
+            stk.push(stk2.pop());
+        }
+    }
+}
+
+/**
+ * Your CustomStack object will be instantiated and called as such:
+ * CustomStack obj = new CustomStack(maxSize);
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * obj.increment(k,val);
+ */
