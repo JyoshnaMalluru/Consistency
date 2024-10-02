@@ -1,0 +1,59 @@
+
+
+// User function Template for Java
+
+/*
+class Node
+{
+    int data;
+    Node left, right;
+
+    public Node(int d)
+    {
+        data = d;
+        left = right = null;
+    }
+}
+
+*/
+class Solution {
+    // Function to return a list of integers denoting the node
+    // values of both the BST in a sorted order.
+    public static void getInOrder(Node root,List<Integer> arr){
+        if(root == null){
+            return;
+        }
+        getInOrder(root.left,arr);
+        arr.add(root.data);
+        getInOrder(root.right,arr);
+    }
+    public List<Integer> merge(Node root1, Node root2) {
+        // Write your code here
+        List<Integer> arr1 = new ArrayList<>();
+        getInOrder(root1,arr1);
+
+        List<Integer> arr2 = new ArrayList<>();
+        getInOrder(root2,arr2);
+        
+        int i=0,j=0;
+        List<Integer> list = new ArrayList<>();
+        while(i<arr1.size()&&j<arr2.size()){
+            if(arr1.get(i)<=arr2.get(j)){
+                list.add(arr1.get(i));
+                i++;
+            }else{
+                list.add(arr2.get(j));
+                j++;
+            }
+        }
+        while(i<arr1.size()){
+           list.add(arr1.get(i));
+            i++;
+        }
+        while(j<arr2.size()){
+            list.add(arr2.get(j));
+            j++;
+        }
+        return list;
+    }
+}
